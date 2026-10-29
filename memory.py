@@ -15,7 +15,15 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+# Innovación: Usar letras en lugar de números para mejorar la memoria visua
+tiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+         'Y', 'Z', '1', '2', '3', '4', '5', '6',
+         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+         'Y', 'Z', '1', '2', '3', '4', '5', '6']
 state = {'mark': None}
 hide = [True] * 64
 
