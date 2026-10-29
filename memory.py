@@ -26,7 +26,6 @@ tiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
          'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
          'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
          'Y', 'Z', '1', '2', '3', '4', '5', '6']
-state = {'mark': None}
 hide = [True] * 64
 
 
@@ -110,6 +109,11 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
+
+        goto(x + 25, y + 2)
+        color('black')
+        write(tiles[mark], align = 'center', font=('Arial', 30, 'normal'))
+
         goto(x, y)
         down()
         color('black', 'blue')
