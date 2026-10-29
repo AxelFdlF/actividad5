@@ -4,6 +4,7 @@ Proyecto del minijuego de memoria desarrollado en Python utilizando el módulo `
 
 ## Funcionalidades implementadas
 - Detección de Victoria: Se agregó un sistema que valida cuando todas las casillas han sido descubiertas para mostrar un mensaje de triunfo en pantalla.
+- **Innovación (Memoria Visual):** Se sustituyeron los dígitos numéricos por letras del alfabeto, facilitando que el usuario retenga y relacione con mayor facilidad las parejas descubiertas.
 
 ## Instrucciones de ejecución
 1. Asegúrate de tener Python instalado y el paquete `freegames`:
@@ -12,5 +13,5 @@ Proyecto del minijuego de memoria desarrollado en Python utilizando el módulo `
    ```
 2. Ejecuta el juego:
    ```bash
-   python3 memory.py
+   python memory.py
    ```
