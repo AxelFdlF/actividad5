@@ -17,6 +17,15 @@ from freegames import path
 car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None, 'taps' : 0}
+# Innovación: Usar letras en lugar de números para mejorar la memoria visua
+tiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+         'Y', 'Z', '1', '2', '3', '4', '5', '6',
+         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+         'Y', 'Z', '1', '2', '3', '4', '5', '6']
 hide = [True] * 64
 
 
@@ -64,23 +73,66 @@ def tap(x, y):
 def draw():
     """Draw image and tiles."""
     clear()
+    up()
     goto(0, 0)
     shape(car)
     stamp()
 
+    # Variable para contar cuantas fichas siguen ocultas
+    tiles_ocultos = sum(1 for h in hide if h)
+
     for count in range(64):
+        x = xy(count)[0]
+        y = xy(count)[1]
+
         if hide[count]:
-            x, y = xy(count)
-            square(x, y)
+            tiles_ocultos +=1
+            up()
+            goto(x, y)
+            down()
+            color('black', 'blue')
+            begin_fill()
+            for _ in range(4):
+                forward(50)
+                left(90)
+            end_fill()
+        else:
+            #Si la ficha esta descubierta, dibuja su valor
+            up()
+            goto(x + 25, y + 10)  # Ajuste centrado aproximado
+            color('black')
+            write(tiles[count], align="center", font=('Arial', 30, 'normal'))
 
+
+    # Dibujar la selección actual si hay un cuadro marcado
     mark = state['mark']
-
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
+
         goto(x + 25, y + 2)
         color('black')
-        write(tiles[mark], align = 'center' font=('Arial', 30, 'normal'))
+        write(tiles[mark], align = 'center', font=('Arial', 30, 'normal'))
+
+        goto(x, y)
+        down()
+        color('black', 'blue')
+        begin_fill()
+        for _ in range(4):
+            forward(50)
+            left(90)
+        end_fill()
+        up()
+        goto(x + 25, y + 5)
+        color('black')
+        write(tiles[mark], align="center", font=('Arial', 25, 'normal'))
+
+
+    if tiles_ocultos == 0:
+        up()
+        goto(0, 0)
+        color('green')
+        write("You win!", align= "center", font=('Arial', 24, 'bold'))
 
     up()
     goto(0, 210)
