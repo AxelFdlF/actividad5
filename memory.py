@@ -15,6 +15,8 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
+tiles = list(range(32)) * 2
+state = {'mark': None, 'taps' : 0}
 # Innovación: Usar letras en lugar de números para mejorar la memoria visua
 tiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
          'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -53,6 +55,11 @@ def xy(count):
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    if not (-200 <= x < 200 and -200 <= y < 200):
+        return
+
+    state['taps'] += 1
+
     spot = index(x, y)
     mark = state['mark']
 
@@ -123,12 +130,17 @@ def draw():
         color('green')
         write("You win!", align= "center", font=('Arial', 24, 'bold'))
 
+    up()
+    goto(0, 210)
+    color('black')
+    write(f"Taps: {state['taps']}", align='center', font=('Arial', 16, 'normal'))
+
     update()
     ontimer(draw, 100)
 
 
 shuffle(tiles)
-setup(420, 420, 370, 0)
+setup(420, 480, 370, 0)
 addshape(car)
 hideturtle()
 tracer(False)
